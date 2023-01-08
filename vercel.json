@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "insta_server",
+    "name": "chatGPT_server",
     "builds": [
         {
             "src": "server.js",
