@@ -9,12 +9,12 @@ exports.login = async (req, res) => {
     if (!findUser)
       return res
         .status(401)
-        .send({ success: flase, message: "User doesn't exist" });
+        .send({ success: false, message: "User doesn't exist" });
     const passwordMatch = compareSync(req.body.password, findUser.password);
     if (!passwordMatch)
       return res
         .status(401)
-        .send({ success: flase, message: "Wrong password" });
+        .send({ success: false, message: "Wrong password" });
     findUser.password = undefined;
     res.send(findUser);
   } catch (err) {
@@ -29,13 +29,13 @@ exports.signup = async (req, res) => {
       uid: crypto.randomUUID(),
       ...req.body,
       password: hashSync(req.body.password, 10),
-      apiKey: generateApiKey(),
+      apiKey: generateApiKey({ method: "bytes" }),
       queries: _id,
     });
     const user = await newUser.save();
     user.password = undefined;
     res.status(201).send(user);
   } catch (err) {
-    res.status(400).send({ error: err.message });
+    res.status(400).send({ success: false, message: err.message });
   }
 };
