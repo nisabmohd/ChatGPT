@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const querySchema = new mongoose.Schema({
     texts: [
@@ -7,12 +7,12 @@ const querySchema = new mongoose.Schema({
                 type: String,
             },
             textBy: {
-                type: Number
+                type: Number,
                 // 0 -> chatGPT
                 // 1 -> user
-            }
-        }
-    ]
-})
+            },
+        },
+    ],
+});
 
-module.exports = new mongoose.model('query', querySchema)
+module.exports = new mongoose.model("query", querySchema);
