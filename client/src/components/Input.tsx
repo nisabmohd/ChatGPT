@@ -7,22 +7,29 @@ import { url } from "../url";
 type InputProps = {
   addMessage: (msg: Message) => void;
   toggleLoading: (value: boolean) => void;
+  apiKey: string;
+  img: string;
 };
 
-export default function Input({ addMessage, toggleLoading }: InputProps) {
+export default function Input({
+  addMessage,
+  toggleLoading,
+  apiKey,
+  img,
+}: InputProps) {
   const [input, setInput] = useState<string>("");
   function handleInput() {
     addMessage({
       msg: input,
       me: true,
-      img: "https://firebasestorage.googleapis.com/v0/b/instagram-4b51d.appspot.com/o/images%2FIMG_2022_12_05_203851%20(1).JPEG?alt=media&token=1393f0ca-9ac6-4930-b8e3-e48e34b496f3",
+      img,
     });
     setInput("");
     toggleLoading(true);
 
     //apiCall
     axios
-      .post(`${url}/chatgpt/chat/6f31bfc3717d63e7bd21`, { message: input })
+      .post(`${url}/chatgpt/chat/${apiKey}`, { message: input })
       .then((resp) => {
         toggleLoading(false);
         addMessage({

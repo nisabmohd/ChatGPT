@@ -21,7 +21,6 @@ export default function App() {
     if (!user) return undefined;
     return JSON.parse(user);
   });
-  console.log(auth);
 
   function addMessage(msg: Message) {
     setMessages((prev) => [...prev, msg]);
@@ -29,12 +28,14 @@ export default function App() {
   function toggleLoading(value: boolean) {
     setLoading(value);
   }
-
+  function handleAuth(value: any) {
+    setAuth(value);
+  }
   return (
     <div>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login handleAuth={handleAuth} />} />
+        <Route path="/signup" element={<Signup handleAuth={handleAuth} />} />
         <Route path="/" element={!auth ? <Auth /> : <Navigate to="/chat" />} />
         <Route
           path="/chat"
@@ -63,7 +64,12 @@ export default function App() {
                   <Hero />
                 )}
 
-                <Input toggleLoading={toggleLoading} addMessage={addMessage} />
+                <Input
+                  img={auth?.avatar}
+                  apiKey={auth?.apiKey}
+                  toggleLoading={toggleLoading}
+                  addMessage={addMessage}
+                />
               </div>
             )
           }
