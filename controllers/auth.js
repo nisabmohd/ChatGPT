@@ -2,6 +2,7 @@ const { hashSync, compareSync } = require("bcrypt");
 const Query = require("../models/Query");
 const User = require("../models/User");
 const { generateApiKey } = require("generate-api-key");
+const { v4: uidgen } = require("uuid");
 
 exports.login = async (req, res) => {
   try {
@@ -26,7 +27,7 @@ exports.signup = async (req, res) => {
     const newQuery = new Query({ texts: [] });
     const { _id } = await newQuery.save();
     const newUser = new User({
-      uid: crypto.randomUUID(),
+      uid: uidgen(),
       ...req.body,
       password: hashSync(req.body.password, 10),
       apiKey: generateApiKey({ method: "bytes" }),
