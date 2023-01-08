@@ -1,1 +1,1 @@
-export const url = "https://chatgpt-xemw.onrender.com";
+export const url = "https://chat-gpt-ldgi.vercel.app";
