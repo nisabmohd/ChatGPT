@@ -1,5 +1,5 @@
 const Query = require("../models/Query");
-const { createCompletionChatGTP } = require("../chatGTp");
+const { createCompletionChatGTP } = require("../chatGTP");
 
 exports.chat = async (req, res) => {
   try {
