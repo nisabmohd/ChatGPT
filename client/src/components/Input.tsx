@@ -9,6 +9,7 @@ type InputProps = {
   toggleLoading: (value: boolean) => void;
   apiKey: string;
   img: string;
+  handlelogout: () => void;
 };
 
 export default function Input({
@@ -16,6 +17,7 @@ export default function Input({
   toggleLoading,
   apiKey,
   img,
+  handlelogout,
 }: InputProps) {
   const [input, setInput] = useState<string>("");
   function handleInput() {
@@ -104,6 +106,12 @@ export default function Input({
         ChatGPT Dec 15 Version. Free Research Preview. Our goal is to make AI
         systems more natural and safe to interact with. Your feedback will help
         us improve.
+        <p
+          style={{ fontSize: "12px", marginTop: "9px", cursor: "pointer" }}
+          onClick={() => handlelogout()}
+        >
+          Logout
+        </p>
       </p>
     </div>
   );

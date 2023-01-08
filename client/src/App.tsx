@@ -31,6 +31,10 @@ export default function App() {
   function handleAuth(value: any) {
     setAuth(value);
   }
+  function handlelogout() {
+    setAuth(null);
+    localStorage.removeItem("auth");
+  }
   return (
     <div>
       <Routes>
@@ -65,6 +69,7 @@ export default function App() {
                 )}
 
                 <Input
+                  handlelogout={handlelogout}
                   img={auth?.avatar}
                   apiKey={auth?.apiKey}
                   toggleLoading={toggleLoading}
