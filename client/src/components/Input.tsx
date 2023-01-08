@@ -1,7 +1,36 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { Message } from "../App";
 import { send } from "../assets/icons";
+import { url } from "../url";
 
-export default function Input() {
+type InputProps = {
+  addMessage: (msg: Message) => void;
+  toggleLoading: (value: boolean) => void;
+};
+
+export default function Input({ addMessage, toggleLoading }: InputProps) {
+  const [input, setInput] = useState<string>("");
+  function handleInput() {
+    addMessage({
+      msg: input,
+      me: true,
+      img: "https://firebasestorage.googleapis.com/v0/b/instagram-4b51d.appspot.com/o/images%2FIMG_2022_12_05_203851%20(1).JPEG?alt=media&token=1393f0ca-9ac6-4930-b8e3-e48e34b496f3",
+    });
+    setInput("");
+    toggleLoading(true);
+
+    //apiCall
+    axios
+      .post(`${url}/chatgpt/chat/6f31bfc3717d63e7bd21`, { message: input })
+      .then((resp) => {
+        toggleLoading(false);
+        addMessage({
+          msg: resp.data.message,
+          img: undefined,
+        });
+      });
+  }
   return (
     <div
       style={{
@@ -28,6 +57,8 @@ export default function Input() {
         }}
       >
         <input
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
           type="text"
           style={{
             width: "97%",
@@ -41,6 +72,7 @@ export default function Input() {
           placeholder=""
         />
         <button
+          onClick={() => handleInput()}
           style={{
             rotate: "90deg",
             marginRight: "13px",

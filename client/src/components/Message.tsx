@@ -1,11 +1,6 @@
 import React from "react";
+import { Message as MessageProps } from "../App";
 import { logo } from "../assets/icons";
-
-type MessageProps = {
-  me?: boolean;
-  msg: string;
-  img?: string;
-};
 
 export default function Message({ me, msg, img }: MessageProps) {
   return (
@@ -15,14 +10,20 @@ export default function Message({ me, msg, img }: MessageProps) {
         backgroundColor: !me ? "#444654" : "transparent",
         display: "flex",
         flexDirection: "row",
-        alignItems: "center",
+        alignItems: "flex-start",
         padding: "18px 0",
-        // inLpadding: "18px 15px",
+        borderRadius: "5px",
       }}
     >
-      <div style={{ width: "25px", marginLeft: "15px" }}>
+      <div
+        style={{ width: "25px", marginLeft: "15px", alignItems: "flex-start" }}
+      >
         {img ? (
-          <img style={{ borderRadius: "3px" }} src={img} alt="" />
+          <img
+            style={{ borderRadius: "3px", width: "32px" }}
+            src={img}
+            alt=""
+          />
         ) : (
           <div
             style={{
@@ -39,16 +40,18 @@ export default function Message({ me, msg, img }: MessageProps) {
           </div>
         )}
       </div>
-      <p
+      <pre
         style={{
           marginLeft: me ? "35px" : "28px",
           marginRight: "15px",
           fontSize: "14px",
           lineHeight: "20px",
+          width: "100%",
+          marginTop: "6.5px",
         }}
       >
-        {msg}
-      </p>
+        {msg.trim()}
+      </pre>
     </div>
   );
 }
