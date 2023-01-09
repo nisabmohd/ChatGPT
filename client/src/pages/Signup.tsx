@@ -23,7 +23,8 @@ export default function Signup({ handleAuth }: AuthPropType) {
         localStorage.setItem("auth", JSON.stringify(res.data));
         handleAuth(res.data);
         navigate("/chat");
-      });
+      })
+      .catch((err) => toast.error(err.response.data.message));
   }
 
   return (

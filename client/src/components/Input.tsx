@@ -42,6 +42,7 @@ export default function Input({
   }
   return (
     <div
+      className="botm"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -66,6 +67,7 @@ export default function Input({
         }}
       >
         <input
+          onKeyDown={(e) => e.keyCode === 13 && input != "" && handleInput()}
           onChange={(e) => setInput(e.target.value)}
           value={input}
           type="text"
@@ -96,22 +98,30 @@ export default function Input({
         </button>
       </div>
       <p
+        className="hide"
         style={{
           fontSize: "11.6px",
           textAlign: "center",
           marginTop: "19px",
           color: "rgb(185 185 185)",
+          maxWidth: "75%",
         }}
       >
         ChatGPT Dec 15 Version. Free Research Preview. Our goal is to make AI
         systems more natural and safe to interact with. Your feedback will help
         us improve.
-        <p
-          style={{ fontSize: "12px", marginTop: "9px", cursor: "pointer" }}
-          onClick={() => handlelogout()}
-        >
-          Logout
-        </p>
+      </p>
+      <p
+        style={{
+          fontSize: "13px",
+          marginTop: "9px",
+          cursor: "pointer",
+          color: "#bf3838",
+          fontWeight: "bold",
+        }}
+        onClick={() => handlelogout()}
+      >
+        Logout
       </p>
     </div>
   );

@@ -36,3 +36,33 @@ pre {
   word-wrap: break-word;
   /* Internet Explorer 5.5+ */
 }
+
+
+
+
+
+@media screen and (max-width:999px) {
+  .main_cont {
+    width: 88% !important;
+  }
+
+  .msg_cont,
+  .input_box {
+    width: 95% !important;
+  }
+
+  .hide {
+    display: none;
+  }
+}
+
+@media screen and (max-width:520px) {
+  .main_cont {
+    width: 99% !important;
+  }
+
+  .botm {
+    bottom: 10px !important;
+  }
+
+}

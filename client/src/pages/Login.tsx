@@ -15,11 +15,14 @@ export default function Login({ handleAuth }: AuthPropType) {
   const navigate = useNavigate();
   function handleLogin() {
     if (!username || !password) return toast.error("All credentials required");
-    axios.post(`${url}/auth/login`, { username, password }).then((res) => {
-      localStorage.setItem("auth", JSON.stringify(res.data));
-      handleAuth(res.data);
-      navigate("/chat");
-    });
+    axios
+      .post(`${url}/auth/login`, { username, password })
+      .then((res) => {
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        handleAuth(res.data);
+        navigate("/chat");
+      })
+      .catch((err) => toast.error(err.response.data.message));
   }
 
   return (

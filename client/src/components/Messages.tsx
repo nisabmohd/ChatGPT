@@ -20,6 +20,7 @@ export default function Messages({ messages, show }: MessagesProps) {
   }
   return (
     <div
+      className="msg_cont"
       ref={scrollRef}
       style={{
         width: "75%",

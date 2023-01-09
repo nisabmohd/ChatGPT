@@ -48,6 +48,7 @@ export default function App() {
               <Navigate to="/login" />
             ) : (
               <div
+                className="main_cont"
                 style={{
                   width: "50%",
                   margin: "auto",
@@ -57,6 +58,7 @@ export default function App() {
               >
                 {messages.length != 0 ? (
                   <div
+                    className="inner_cont"
                     style={{
                       height: "88%",
                       overflowY: "scroll",
