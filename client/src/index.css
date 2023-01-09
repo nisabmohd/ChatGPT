@@ -56,6 +56,18 @@ pre {
   }
 }
 
+
+
+@media screen and (max-width:731px) {
+  .cols {
+    flex-direction: column !important;
+  }
+
+  .hiderow {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width:520px) {
   .main_cont {
     width: 99% !important;

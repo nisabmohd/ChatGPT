@@ -38,6 +38,7 @@ export default function Hero() {
             "Explain quantum computing in simple terms"
           </div>
           <div
+            className=""
             style={{
               backgroundColor: "#3e3f4b",
               display: "flex",
@@ -67,7 +68,7 @@ export default function Hero() {
           </div>
         </div>
         <div
-          className="row"
+          className="row hiderow"
           style={{
             width: "225px",
             height: "150px",
@@ -79,6 +80,7 @@ export default function Hero() {
           {thunder}
           <p style={{ fontSize: "18px", marginTop: "5px" }}>Capabilities</p>
           <div
+            className="hiderow"
             style={{
               backgroundColor: "#3e3f4b",
               display: "flex",
@@ -107,6 +109,7 @@ export default function Hero() {
             Allows user to provide follow-up corrections
           </div>
           <div
+            className="hiderow"
             style={{
               backgroundColor: "#3e3f4b",
               display: "flex",
@@ -122,7 +125,7 @@ export default function Hero() {
           </div>
         </div>
         <div
-          className="row"
+          className="row hiderow"
           style={{
             width: "225px",
             height: "150px",
@@ -134,6 +137,7 @@ export default function Hero() {
           {alert}
           <p style={{ fontSize: "18px", marginTop: "5px" }}>Limitations</p>
           <div
+            className="hiderow"
             style={{
               backgroundColor: "#3e3f4b",
               display: "flex",
@@ -148,6 +152,7 @@ export default function Hero() {
             May occasionally generate incorrect information
           </div>
           <div
+            className="hiderow"
             style={{
               backgroundColor: "#3e3f4b",
               display: "flex",
@@ -162,6 +167,7 @@ export default function Hero() {
             May occasionally produce harmful instructions or biased content
           </div>
           <div
+            className="hiderow"
             style={{
               backgroundColor: "#3e3f4b",
               display: "flex",
