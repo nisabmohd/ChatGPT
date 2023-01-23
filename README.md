@@ -14,12 +14,14 @@ The recommended way to get ChatGPT clone is to use git to directly clone the rep
 ```bash
 $ git clone https://github.com/nisabmohd/ChatGPT.git
 ```
-## Environment variables Node setup 
+## Environment variables React setup 
+create .env file in client/
 ```
 VITE_API_URL=http://localhost:8000
 ```
 
 ## Environment variables Node setup 
+create .env in root folder
 ```
 OPENAI_API_KEY = YOU_API_KEY_HERE
 MONGO_URI = mongodb://0.0.0.0:27017/chatGPT
