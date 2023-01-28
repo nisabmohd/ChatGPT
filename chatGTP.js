@@ -4,15 +4,6 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function generateImageFromChatGTP({ message }) {
-  const response = await openai.createImage({
-    prompt: message,
-    n: 2,
-    size: "1024x1024",
-  });
-  return response;
-}
-
 async function createCompletionChatGTP({ message }) {
   const response = await openai.createCompletion({
     model: "text-davinci-003",
@@ -23,4 +14,4 @@ async function createCompletionChatGTP({ message }) {
   return response;
 }
 
-module.exports = { generateImageFromChatGTP, createCompletionChatGTP };
+module.exports = { createCompletionChatGTP };

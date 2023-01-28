@@ -25,6 +25,7 @@ export default function Input({
       msg: input,
       me: true,
       img,
+      _id: new Date().toString(),
     });
     setInput("");
     toggleLoading(true);
@@ -37,6 +38,7 @@ export default function Input({
         addMessage({
           msg: resp.data.message,
           img: undefined,
+          _id: resp.data.id,
         });
       });
   }
@@ -48,14 +50,14 @@ export default function Input({
         flexDirection: "column",
         alignItems: "center",
         position: "absolute",
-        bottom: "35px",
+        bottom: "10px",
         width: "100%",
       }}
     >
       <div
         className="input_box"
         style={{
-          width: "75%",
+          width: "86%",
           backgroundColor: "#40414f",
           height: "45px",
           borderRadius: "7px",
@@ -67,6 +69,7 @@ export default function Input({
         }}
       >
         <input
+          autoFocus={true}
           onKeyDown={(e) => e.keyCode === 13 && input != "" && handleInput()}
           onChange={(e) => setInput(e.target.value)}
           value={input}
@@ -100,20 +103,19 @@ export default function Input({
       <p
         className="hide"
         style={{
-          fontSize: "11.6px",
+          fontSize: "12.6px",
           textAlign: "center",
           marginTop: "19px",
           color: "rgb(185 185 185)",
-          maxWidth: "75%",
+          maxWidth: "85%",
         }}
       >
-        ChatGPT Dec 15 Version. Free Research Preview. Our goal is to make AI
-        systems more natural and safe to interact with. Your feedback will help
-        us improve.
+        ChatGPT . Free Research Preview. Our goal is to make AI systems more
+        natural and safe to interact with. Your feedback will help us improve.
       </p>
       <p
         style={{
-          fontSize: "13px",
+          fontSize: "13.5px",
           marginTop: "9px",
           cursor: "pointer",
           color: "#bf3838",

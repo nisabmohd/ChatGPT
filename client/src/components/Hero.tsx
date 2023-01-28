@@ -4,12 +4,17 @@ import { alert, sun, thunder } from "../assets/icons";
 export default function Hero() {
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+      }}
     >
       <h1 style={{ marginTop: "18vh", marginBottom: "5vh" }}>ChatGPT</h1>
       <div
         className="cols"
-        style={{ display: "flex", flexDirection: "row", gap: "18px" }}
+        style={{ display: "flex", flexDirection: "row", gap: "58px" }}
       >
         <div
           className="row"

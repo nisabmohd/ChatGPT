@@ -22,6 +22,7 @@ exports.login = async (req, res) => {
     res.status(400).send({ error: err.message });
   }
 };
+
 exports.signup = async (req, res) => {
   try {
     const newQuery = new Query({ texts: [] });
