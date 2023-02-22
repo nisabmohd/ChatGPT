@@ -30,6 +30,7 @@ type User = {
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [chatLoading, setChatloading] = useState(true);
   const [auth, setAuth] = useState<User | undefined>(() => {
     const user = localStorage.getItem("auth");
     if (!user) return undefined;
@@ -69,6 +70,9 @@ export default function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setChatloading(false);
       });
   }, [auth]);
 
@@ -108,6 +112,7 @@ export default function App() {
                 )}
 
                 <Input
+                  chatLoading={chatLoading}
                   handlelogout={handlelogout}
                   img={auth?.avatar}
                   apiKey={auth?.apiKey}

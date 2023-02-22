@@ -10,6 +10,7 @@ type InputProps = {
   apiKey: string;
   img: string;
   handlelogout: () => void;
+  chatLoading: boolean;
 };
 
 export default function Input({
@@ -18,6 +19,7 @@ export default function Input({
   apiKey,
   img,
   handlelogout,
+  chatLoading,
 }: InputProps) {
   const [input, setInput] = useState<string>("");
   function handleInput() {
@@ -69,6 +71,7 @@ export default function Input({
         }}
       >
         <input
+          disabled={chatLoading}
           autoFocus={true}
           onKeyDown={(e) => e.keyCode === 13 && input != "" && handleInput()}
           onChange={(e) => setInput(e.target.value)}
