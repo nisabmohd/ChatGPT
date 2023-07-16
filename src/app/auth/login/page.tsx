@@ -13,16 +13,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: "Sign in | ChatGPT",
-  description: "ChatGPT clone with simple design signin page",
-};
 
 export default function Login() {
   const [inputs, setInputs] = useState({
