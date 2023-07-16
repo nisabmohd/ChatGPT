@@ -76,6 +76,11 @@ export default function Chat() {
         </div>
         <div className="w-[50%] flex flex-row gap-3 mx-auto mt-auto">
           <Input
+            onKeyDown={(e) => {
+              if (e.keyCode == 13 && message) {
+                handleEmit();
+              }
+            }}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Send a message"
