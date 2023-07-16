@@ -40,7 +40,7 @@ export default function Signup() {
     axios
       .post("/api/auth/signup", { email, apiKey, avatar, username, password })
       .then(({ data }) => {
-        localStorage.setItem("user", JSON.stringify({ data }));
+        localStorage.setItem("user", JSON.stringify(data));
         push("/chat");
       })
       .catch((err) => {

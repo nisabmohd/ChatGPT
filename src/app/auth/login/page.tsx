@@ -37,7 +37,7 @@ export default function Login() {
     axios
       .post("/api/auth/login", { input, password })
       .then(({ data }) => {
-        localStorage.setItem("user", JSON.stringify({ data }));
+        localStorage.setItem("user", JSON.stringify(data));
         push("/chat");
       })
       .catch((err) => {

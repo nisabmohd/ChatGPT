@@ -11,21 +11,27 @@ const editSchema = z
     apiKey: z.string(),
     avatar: z.string(),
   })
-  .partial();
+  .partial()
+  .strict();
 
 export async function PUT(req: NextRequest) {
   try {
-    const { apiKey, avatar, username } = editSchema.parse(await req.json());
+    const body = await req.json();
+    const { apiKey, avatar, username } = editSchema.parse(body);
     const token = req.cookies.get("accessToken")!.value!;
     const { userId } = decryptToken(token, process.env.JWT_SECRET!);
+    const obj = { ...body };
+    for (let key in obj) {
+      if (obj[key] === undefined || obj[key] === "") {
+        delete obj[key];
+      }
+    }
     const user = await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
-        avatar,
-        username,
-        apiKey,
+        ...obj,
       },
     });
     const userCopy = {
