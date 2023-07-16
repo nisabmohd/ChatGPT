@@ -19,6 +19,7 @@ model User {
   email     String
   password  String
   queries   Query[]
+  apiKey    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
