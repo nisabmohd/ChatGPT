@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
 
 const font = JetBrains_Mono({ subsets: ["cyrillic"] });
 
@@ -16,8 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${font.className} bg-neutral-950 text-neutral-200`}>
-        {children}
+      <body
+        className={`${font.className} dark:bg-neutral-950 bg-white dark:text-neutral-200`}
+      >
+        <main>
+          <Toaster />
+          {children}
+        </main>
       </body>
     </html>
   );

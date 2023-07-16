@@ -14,6 +14,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import axios, { AxiosError } from "axios";
 
 export const metadata: Metadata = {
   title: "Sign up | ChatGPT",
@@ -21,6 +25,33 @@ export const metadata: Metadata = {
 };
 
 export default function Signup() {
+  const [inputs, setInputs] = useState({
+    email: "",
+    username: "",
+    avatar: "",
+    apiKey: "",
+    password: "",
+  });
+  const { toast } = useToast();
+  const { push } = useRouter();
+
+  function handleSignup() {
+    const { email, apiKey, avatar, username, password } = inputs;
+    axios
+      .post("/api/auth/signup", { email, apiKey, avatar, username, password })
+      .then(({ data }) => {
+        localStorage.setItem("user", JSON.stringify({ data }));
+        push("/chat");
+      })
+      .catch((err) => {
+        if (err instanceof AxiosError)
+          toast({
+            title: "Signup unsuccessful",
+            description: err.response?.data.message,
+          });
+      });
+  }
+
   return (
     <div className="flex flex-col items-center h-screen">
       <span className="mt-12">{Logo}</span>
@@ -34,35 +65,77 @@ export default function Signup() {
             <div className="grid w-full items-center gap-4 mt-1">
               <div className="flex flex-col gap-3  space-y-1.5">
                 <Label htmlFor="email">Email </Label>
-                <Input id="email" placeholder="john.doe@example.com" />
+                <Input
+                  value={inputs.email}
+                  onChange={(e) =>
+                    setInputs((prev) => ({ ...prev, email: e.target.value }))
+                  }
+                  id="email"
+                  placeholder="john.doe@example.com"
+                />
               </div>
               <div className="flex flex-col gap-3  space-y-1.5">
                 <Label htmlFor="username">Username</Label>
-                <Input id="username" placeholder="johndoe" />
+                <Input
+                  value={inputs.username}
+                  onChange={(e) =>
+                    setInputs((prev) => ({ ...prev, username: e.target.value }))
+                  }
+                  id="username"
+                  placeholder="johndoe"
+                />
               </div>
               <div className="flex flex-col gap-3  space-y-1.5">
                 <Label htmlFor="avatar">
-                  Avatar URL{" "}
+                  Avatar URL
                   <span className="text-neutral-400">(optional)</span>
                 </Label>
                 <Input
+                  value={inputs.avatar}
+                  onChange={(e) =>
+                    setInputs((prev) => ({ ...prev, avatar: e.target.value }))
+                  }
                   id="avatar"
                   placeholder="https://github.com/johndoe.png"
                 />
               </div>
               <div className="flex flex-col gap-3  space-y-1.5">
                 <Label htmlFor="api">API key</Label>
-                <Input id="api" placeholder="abcd1234" />
+                <Input
+                  value={inputs.apiKey}
+                  onChange={(e) =>
+                    setInputs((prev) => ({ ...prev, apiKey: e.target.value }))
+                  }
+                  id="api"
+                  placeholder="xy125y7Trf786Something"
+                />
               </div>
               <div className="flex flex-col gap-3 mt-2 space-y-1.5">
                 <Label htmlFor="password">Password</Label>
-                <Input type="password" id="password" />
+                <Input
+                  value={inputs.password}
+                  onChange={(e) =>
+                    setInputs((prev) => ({ ...prev, password: e.target.value }))
+                  }
+                  type="password"
+                  id="password"
+                />
               </div>
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex mt-1">
-          <Button variant="custom" className="w-full">
+          <Button
+            disabled={
+              !inputs.apiKey ||
+              !inputs.email ||
+              !inputs.password ||
+              !inputs.username
+            }
+            onClick={handleSignup}
+            variant="custom"
+            className="w-full"
+          >
             Signup
           </Button>
         </CardFooter>

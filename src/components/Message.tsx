@@ -11,7 +11,7 @@ export default function Message({ id, isUser, message }: MessageProps) {
   return (
     <div
       className={`${!isUser ? "py-7" : "py-1"} h-fit ${
-        !isUser ? "bg-neutral-900" : "bg-inherit"
+        !isUser ? "dark:bg-neutral-900 bg-neutral-100" : "bg-inherit"
       }`}
     >
       <div className="flex flex-row gap-6 w-[50%] mx-auto items-start">
@@ -19,7 +19,7 @@ export default function Message({ id, isUser, message }: MessageProps) {
           <>
             <Avatar className="w-10 h-10">
               <AvatarImage src="https://github.com/nisabmohd.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>NM</AvatarFallback>
             </Avatar>
           </>
         ) : (

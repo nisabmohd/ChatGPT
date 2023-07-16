@@ -14,12 +14,12 @@ model Token {
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  username  String
+  username  String   @unique
   avatar    String?
-  email     String
+  email     String   @unique
   password  String
   queries   Query[]
-  apiKey    String
+  apiKey    String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
