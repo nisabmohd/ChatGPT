@@ -42,3 +42,5 @@ todo:
 - markdown
 - type writer effect
 - refresh token interceptor
+- boilerplate when no messages
+- loading state
