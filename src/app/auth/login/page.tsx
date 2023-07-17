@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <div className="flex flex-col items-center h-screen">
       <span className="mt-12">{Logo}</span>
-      <Card className="w-[380px] py-5 mt-48">
+      <Card className="w-[380px] py-5 mt-48 max-[900px]:mt-10 max-[400px]:w-[95%]">
         <CardHeader>
           <CardTitle>Welcome back</CardTitle>
           <CardDescription>Login to your account.</CardDescription>

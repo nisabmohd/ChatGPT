@@ -64,7 +64,7 @@ export default function Chat() {
     <div>
       <Menu clear={clear} />
       <div className="input w-full flex flex-col justify-between h-screen">
-        <div className="messages w-full mx-auto h-full mb-4 overflow-auto flex flex-col gap-10 pt-10">
+        <div className="messages w-full mx-auto h-full mb-4 overflow-auto flex flex-col gap-10 pt-10 max-[900px]:pt-20">
           {messages.map((message) => (
             <Message
               key={message.id}
@@ -74,7 +74,7 @@ export default function Chat() {
             />
           ))}
         </div>
-        <div className="w-[50%] flex flex-row gap-3 mx-auto mt-auto">
+        <div className="w-[50%] max-[900px]:w-[90%] flex flex-row gap-3 mx-auto mt-auto">
           <Input
             onKeyDown={(e) => {
               if (e.keyCode == 13 && message) {

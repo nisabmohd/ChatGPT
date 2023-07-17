@@ -25,7 +25,7 @@ export default function Message({ id, isUser, message }: MessageProps) {
         !isUser ? "dark:bg-neutral-900 bg-neutral-100" : "bg-inherit"
       }`}
     >
-      <div className="flex flex-row gap-6 w-[50%] mx-auto items-start">
+      <div className="flex flex-row gap-6 w-[50%] max-[900px]:w-[88%]  mx-auto items-start">
         {isUser ? (
           <>
             <Avatar className="w-10 h-10">

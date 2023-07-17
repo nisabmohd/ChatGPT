@@ -49,7 +49,7 @@ export default function Signup() {
   return (
     <div className="flex flex-col items-center h-screen">
       <span className="mt-12">{Logo}</span>
-      <Card className="w-[380px] py-5 mt-20">
+      <Card className="w-[380px] py-5 mt-20 max-[900px]:mt-10 max-[400px]:w-[95%]">
         <CardHeader>
           <CardTitle>New to ChatGPT</CardTitle>
           <CardDescription>Create your account.</CardDescription>
@@ -134,7 +134,7 @@ export default function Signup() {
           </Button>
         </CardFooter>
       </Card>
-      <span className="mt-6 text-sm">
+      <span className="mt-6 text-sm max-[400px]:pb-4">
         Already have an account?{" "}
         <Link className="text-neutral-400" href="/auth/login">
           Log in
