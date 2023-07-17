@@ -1,15 +1,23 @@
 import { Logo } from "./assets/Icons";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarImage } from "./ui/avatar";
 import { useState, useEffect } from "react";
+import Typewriter from "typewriter-effect";
 
 type MessageProps = {
   message: string;
   id: string;
   isUser: boolean;
+  isNew?: boolean;
 };
 
-export default function Message({ id, isUser, message }: MessageProps) {
+export default function Message({
+  id,
+  isUser,
+  message,
+  isNew = false,
+}: MessageProps) {
   const [avatar, setAvatar] = useState<string | undefined>(undefined);
+  const [isNewMessage, setIsNewMessage] = useState(isNew);
   useEffect(() => {
     const local = localStorage.getItem("user");
     if (local) {
@@ -37,7 +45,47 @@ export default function Message({ id, isUser, message }: MessageProps) {
         ) : (
           <span className="">{Logo}</span>
         )}
-        <span className="leading-8">{message}</span>
+        <span className="leading-8">
+          {isUser || !isNewMessage ? (
+            message
+          ) : (
+            <Typewriter
+              options={{
+                delay: 45,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .typeString(message)
+                  .start()
+                  .callFunction(() => {
+                    setIsNewMessage(false);
+                  });
+              }}
+            />
+          )}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function Skeleton() {
+  return (
+    <div className={`py-7 h-fit dark:bg-neutral-900 bg-neutral-100`}>
+      <div className="flex flex-row gap-6 w-[50%] max-[900px]:w-[88%]  mx-auto items-start">
+        <span className="">{Logo}</span>
+        <span className="leading-8">
+          <Typewriter
+            options={{
+              delay: 85,
+              loop: true,
+              autoStart: true,
+            }}
+            onInit={(typewriter) => {
+              typewriter.typeString("...").start();
+            }}
+          />
+        </span>
       </div>
     </div>
   );

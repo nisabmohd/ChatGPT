@@ -132,8 +132,11 @@ export default function Menu({ clear }: { clear: () => void }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="absolute top-7 left-5" variant="ghost">
-            <MenuIcon className="w-6 h-6" />
+          <Button
+            className="absolute top-7 left-5 max-[500px]:left-2 border-2 border-neutral-700 bg-neutral-950"
+            variant="ghost"
+          >
+            <MenuIcon className="w-5 h-5" /> <span className="ml-2">Menu</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56 ml-6">

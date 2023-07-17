@@ -38,9 +38,5 @@ $ npm run dev
 
 todo:
 
-- auto-scroll
 - markdown
-- type writer effect
 - refresh token interceptor
-- boilerplate when no messages
-- loading state
