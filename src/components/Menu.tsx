@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { httpRequest } from "@/lib/interceptor";
 
 const EDIT_INITIAL = {
   username: "",
@@ -91,7 +92,7 @@ export default function Menu({ clear }: { clear: () => void }) {
   }
 
   function handleClear() {
-    axios
+    httpRequest
       .delete("/api/chat")
       .then(() => {
         clear();
@@ -105,7 +106,7 @@ export default function Menu({ clear }: { clear: () => void }) {
   }
 
   function handleUpdate() {
-    axios
+    httpRequest
       .put("/api/profile", {
         ...edit,
       })

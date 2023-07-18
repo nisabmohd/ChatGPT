@@ -1,7 +1,7 @@
 import { prisma } from "@/db/config";
 import ServerError from "@/lib/types";
 import { errorHandler } from "@/lib/utils";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function DELETE(req: NextRequest) {
   try {

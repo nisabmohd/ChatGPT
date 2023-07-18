@@ -1,10 +1,10 @@
 "use client";
 
-import Code from "@/components/Code";
 import Menu from "@/components/Menu";
 import Message, { Skeleton } from "@/components/Message";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { httpRequest } from "@/lib/interceptor";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { v4 as idGen } from "uuid";
@@ -23,7 +23,7 @@ export default function Chat() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    axios
+    httpRequest
       .get("/api/chat")
       .then((res) => {
         setMessages(
@@ -49,7 +49,7 @@ export default function Chat() {
     setMessages((prev) => [...prev, { id: idGen(), isUser: true, message }]);
     const t = message;
     setMessage("");
-    axios
+    httpRequest
       .post("/api/chat", {
         message: t,
       })
@@ -98,9 +98,6 @@ export default function Chat() {
             />
           ))}
           {loading && <Skeleton />}
-          {/* <div className="w-[50%] mx-auto">
-            <Code language="javascript">{'console.log("Hii")'}</Code>
-          </div> */}
         </div>
         <div className="w-[50%] max-[900px]:w-[90%] flex flex-row gap-3 mx-auto mt-auto">
           <Input
