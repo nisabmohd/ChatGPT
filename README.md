@@ -35,8 +35,3 @@ $ npm run dev
 <img src="./images/signup.png" />
 <img src="./images/chat.png" />
 <img src="./images/chat-light.png" />
-
-todo:
-
-- markdown
-- refresh token interceptor
