@@ -32,7 +32,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
@@ -133,7 +132,7 @@ export default function Menu({ clear }: { clear: () => void }) {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            className="absolute top-7 left-5 max-[500px]:left-2 border-2 border-neutral-700 bg-neutral-950"
+            className="absolute top-7 left-5 max-[500px]:left-2 border-2 dark:border-neutral-700 dark:bg-neutral-950 bg-neutral-100 border-neutral-300"
             variant="ghost"
           >
             <MenuIcon className="w-5 h-5" /> <span className="ml-2">Menu</span>

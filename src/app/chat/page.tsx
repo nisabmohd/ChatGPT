@@ -1,5 +1,6 @@
 "use client";
 
+import Code from "@/components/Code";
 import Menu from "@/components/Menu";
 import Message, { Skeleton } from "@/components/Message";
 import { Button } from "@/components/ui/button";
@@ -97,6 +98,9 @@ export default function Chat() {
             />
           ))}
           {loading && <Skeleton />}
+          {/* <div className="w-[50%] mx-auto">
+            <Code language="javascript">{'console.log("Hii")'}</Code>
+          </div> */}
         </div>
         <div className="w-[50%] max-[900px]:w-[90%] flex flex-row gap-3 mx-auto mt-auto">
           <Input

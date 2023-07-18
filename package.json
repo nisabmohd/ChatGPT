@@ -36,7 +36,7 @@
     "prisma": "^5.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "^8.0.7",
+    "react-syntax-highlighter": "^15.5.0",
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
@@ -48,6 +48,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.2",
+    "@types/react-syntax-highlighter": "^15.5.7",
     "@types/uuid": "^9.0.2"
   }
 }

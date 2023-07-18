@@ -1,8 +1,9 @@
+import { CodeMessage, parseCode } from "@/lib/utils";
 import { Logo } from "./assets/Icons";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { useState, useEffect } from "react";
 import Typewriter from "typewriter-effect";
-
+import Code from "./Code";
 type MessageProps = {
   message: string;
   id: string;
@@ -17,7 +18,12 @@ export default function Message({
   isNew = false,
 }: MessageProps) {
   const [avatar, setAvatar] = useState<string | undefined>(undefined);
-  const [isNewMessage, setIsNewMessage] = useState(isNew);
+
+  const { codesArr, withoutCodeArr } = parseCode(message);
+  let result = withoutCodeArr.map((item, index) => {
+    return codesArr[index] ? [item, codesArr[index]] : [item];
+  });
+
   useEffect(() => {
     const local = localStorage.getItem("user");
     if (local) {
@@ -45,23 +51,41 @@ export default function Message({
         ) : (
           <span className="">{Logo}</span>
         )}
-        <span className="leading-8">
-          {isUser || !isNewMessage ? (
-            message
+        <span className="leading-8 w-[97%]">
+          {isUser || !isNew ? (
+            <>
+              {result.flat().map((item: any, index: number) => {
+                return (
+                  <div key={id + index}>
+                    {typeof item == "string" ? (
+                      item
+                    ) : (
+                      <div className="mb-1 w-[94%] z-50">
+                        <Code language={item.language}>{item.code}</Code>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </>
           ) : (
-            <Typewriter
-              options={{
-                delay: 45,
-              }}
-              onInit={(typewriter) => {
-                typewriter
-                  .typeString(message)
-                  .start()
-                  .callFunction(() => {
-                    setIsNewMessage(false);
-                  });
-              }}
-            />
+            <>
+              {result.flat().map((item: any) => {
+                return (
+                  <>
+                    {typeof item == "string" ? (
+                      <TypeOnce>{item}</TypeOnce>
+                    ) : (
+                      <div className="mb-1 w-[94%] z-50">
+                        <Code language={item.language}>
+                          <TypeOnce>{item.code}</TypeOnce>
+                        </Code>
+                      </div>
+                    )}
+                  </>
+                );
+              })}
+            </>
           )}
         </span>
       </div>
@@ -88,5 +112,26 @@ export function Skeleton() {
         </span>
       </div>
     </div>
+  );
+}
+
+function TypeOnce({ children }: { children: string }) {
+  const [on, setOn] = useState(true);
+  return on ? (
+    <Typewriter
+      options={{
+        delay: 45,
+      }}
+      onInit={(typewriter) => {
+        typewriter
+          .typeString(children)
+          .start()
+          .callFunction(() => {
+            setOn(false);
+          });
+      }}
+    />
+  ) : (
+    children
   );
 }
