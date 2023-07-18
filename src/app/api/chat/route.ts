@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
     const { userId } = decryptToken(token, process.env.JWT_SECRET!);
     const queries = await prisma.query.findMany({
       orderBy: {
-        createdAt: "asc",
+        id: "asc",
       },
       where: {
         userId,
