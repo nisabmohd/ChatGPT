@@ -78,7 +78,7 @@ export default function Message({
                     ) : (
                       <div className="mb-1 w-[94%] z-50">
                         <Code language={item.language}>
-                          <TypeOnce>{item.code}</TypeOnce>
+                          {item.code}
                         </Code>
                       </div>
                     )}
