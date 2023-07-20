@@ -4,8 +4,9 @@ import Menu from "@/components/Menu";
 import Message, { Skeleton } from "@/components/Message";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { httpRequest } from "@/lib/interceptor";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useRef, useState } from "react";
 import { v4 as idGen } from "uuid";
 
@@ -21,6 +22,7 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     httpRequest
@@ -37,12 +39,16 @@ export default function Chat() {
         );
       })
       .catch((err) => {
-        console.log(err);
+        if (err instanceof AxiosError)
+          toast({
+            title: "Error",
+            description: err.response?.data.message,
+          });
       })
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [toast]);
 
   function handleEmit() {
     setLoading(true);
@@ -60,7 +66,11 @@ export default function Chat() {
         ]);
       })
       .catch((err) => {
-        console.log(err);
+        if (err instanceof AxiosError)
+          toast({
+            title: "Error",
+            description: err.response?.data.message,
+          });
       })
       .finally(() => {
         setLoading(false);
