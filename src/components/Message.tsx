@@ -39,7 +39,7 @@ export default function Message({
         !isUser ? "dark:bg-neutral-900 bg-neutral-100" : "bg-inherit"
       }`}
     >
-      <div className="flex flex-row gap-6 w-[50%] max-[900px]:w-[88%]  mx-auto items-start">
+      <div className="flex flex-row gap-6 w-[40%] max-[900px]:w-[88%]  mx-auto items-start">
         {isUser ? (
           <>
             <Avatar className="w-10 h-10">
@@ -77,9 +77,7 @@ export default function Message({
                       <TypeOnce>{item}</TypeOnce>
                     ) : (
                       <div className="mb-1 w-[94%] z-50">
-                        <Code language={item.language}>
-                          {item.code}
-                        </Code>
+                        <Code language={item.language}>{item.code}</Code>
                       </div>
                     )}
                   </>
@@ -96,7 +94,7 @@ export default function Message({
 export function Skeleton() {
   return (
     <div className={`py-7 h-fit dark:bg-neutral-900 bg-neutral-100`}>
-      <div className="flex flex-row gap-6 w-[50%] max-[900px]:w-[88%]  mx-auto items-start">
+      <div className="flex flex-row gap-6 w-[40%] max-[900px]:w-[88%]  mx-auto items-start">
         <span className="">{Logo}</span>
         <span className="leading-8">
           <Typewriter

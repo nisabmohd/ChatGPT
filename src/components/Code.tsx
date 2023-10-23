@@ -26,7 +26,7 @@ export default function Code({ children, language }: CodeProps) {
   return (
     <div className="w-fullmt-3 rounded-md mt-3 mb-2">
       <div className="lang bg-stone-700 -mb-[16px] pb-3 z-50 py-1 px-4 rounded-md border-b-2 flex flex-row justify-between items-center h-12 pt-1 text-neutral-200">
-        <span className="text-sm">{language}</span>
+        <span className="text-sm capitalize">{language}</span>
         <div
           className="flex flex-row items-center gap-2 cursor-pointer"
           onClick={() => {
@@ -38,8 +38,12 @@ export default function Code({ children, language }: CodeProps) {
           <Copy className="h-4 w-4 cursor-pointer" />
         </div>
       </div>
-      <div className="z-10">
-        <SyntaxHighlighter language={language ?? "other"} style={atomDark}>
+      <div className="z-10 font-mono">
+        <SyntaxHighlighter
+          customStyle={{ fontSize: "14px", fontFamily: "var(--mono)" }}
+          language={language ?? "other"}
+          style={atomDark}
+        >
           {children}
         </SyntaxHighlighter>
       </div>

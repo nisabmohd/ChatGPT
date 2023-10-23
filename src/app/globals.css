@@ -27,3 +27,7 @@
     border-radius: 7px;
     border: 2px solid #a0a0a0;
 }
+
+html {
+    font-family: var(--font);
+}

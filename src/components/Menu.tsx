@@ -12,14 +12,6 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import axios, { AxiosError } from "axios";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
@@ -36,6 +28,12 @@ import {
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { httpRequest } from "@/lib/interceptor";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const EDIT_INITIAL = {
   username: "",
@@ -130,57 +128,82 @@ export default function Menu({ clear }: { clear: () => void }) {
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+      <Sheet>
+        <SheetTrigger asChild>
           <Button
-            className="absolute top-7 left-5 max-[500px]:left-2 border-2 dark:border-neutral-700 dark:bg-neutral-950 bg-neutral-100 border-neutral-300"
-            variant="ghost"
+            className="absolute top-7 left-5 max-[500px]:left-2 z-[999]"
+            variant="default"
           >
-            <MenuIcon className="w-5 h-5" /> <span className="ml-2">Menu</span>
+            <MenuIcon className="w-5 h-5" />{" "}
+            <span className="ml-2 hidden sm:flex">Menu</span>
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 ml-6">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
-            <User className="mr-2 h-4 w-4" />
-            <span>Edit profile</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={handleClear}>
-            <XCircle className="mr-2 h-4 w-4" />
-            <span>Clear conversation</span>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <Link href="https://github.com/nisabmohd/ChatGPT" target="_blank">
-            <DropdownMenuItem>
-              <Github className="mr-2 h-4 w-4" />
-              <span>GitHub</span>
-            </DropdownMenuItem>
-          </Link>
-          {mode === "dark" ? (
-            <DropdownMenuItem onClick={toggleMode}>
-              <Sun className="mr-2 h-4 w-4" />
-              <span>Light mode</span>
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem onClick={toggleMode}>
-              <Moon className="mr-2 h-4 w-4" />
-              <span>Dark mode</span>
-            </DropdownMenuItem>
-          )}
+        </SheetTrigger>
+        <SheetContent side="left" className="dark:border-slate-800 z-[9999]">
+          <SheetHeader>
+            <div className="pt-8 flex flex-col gap-2">
+              <div
+                className="flex flex-row items-center gap-2 hover:bg-gray-800 dark:hover:text-inherit hover:text-white py-3 px-3 rounded-lg cursor-pointer"
+                onClick={() => setOpen(true)}
+              >
+                <User className="mr-2 h-5 w-5" />
+                <span>Edit profile</span>
+              </div>
+              <div
+                className="flex flex-row items-center gap-2 hover:bg-gray-800 dark:hover:text-inherit hover:text-white py-3 px-3 rounded-lg cursor-pointer"
+                onClick={handleClear}
+              >
+                <XCircle className="mr-2 h-5 w-5" />
+                <span>Clear conversation</span>
+              </div>
+              <Link
+                href="https://github.com/nisabmohd/ChatGPT"
+                target="_blank"
+                className="flex flex-row items-center gap-2 hover:bg-gray-800 dark:hover:text-inherit hover:text-white py-3 px-3 rounded-lg"
+              >
+                <Github className="mr-2 h-5 w-5" />
+                <span>GitHub</span>
+              </Link>
+              <div className="flex flex-row items-center gap-2 hover:bg-gray-800 dark:hover:text-inherit hover:text-white py-3 px-3 rounded-lg cursor-pointer">
+                {mode === "dark" ? (
+                  <div
+                    className="flex flex-row items-center gap-2"
+                    onClick={toggleMode}
+                  >
+                    {" "}
+                    <Sun className="mr-2 h-5 w-5" />
+                    <span>Light mode</span>
+                  </div>
+                ) : (
+                  <div
+                    className="flex flex-row items-center gap-2"
+                    onClick={toggleMode}
+                  >
+                    {" "}
+                    <Moon className="mr-2 h-5 w-5" />
+                    <span>Dark mode</span>
+                  </div>
+                )}
+              </div>
+              <Link
+                href="https://platform.openai.com/docs/"
+                target="_blank"
+                className="flex flex-row items-center gap-2 hover:bg-gray-800 dark:hover:text-inherit hover:text-white py-3 px-3 rounded-lg cursor-pointer"
+              >
+                <Cloud className="mr-2 h-5 w-5" />
+                <span>API</span>
+              </Link>
+              <div
+                className="flex flex-row items-center gap-2 hover:bg-gray-800 dark:hover:text-inherit hover:text-white py-3 px-3 rounded-lg cursor-pointer"
+                onClick={handleLogout}
+              >
+                <LogOut className="mr-2 h-5 w-5" />
+                <span>Log out</span>
+              </div>
+            </div>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
 
-          <Link href="https://platform.openai.com/docs/" target="_blank">
-            <DropdownMenuItem>
-              <Cloud className="mr-2 h-4 w-4" />
-              <span>API</span>
-            </DropdownMenuItem>
-          </Link>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout}>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
       <Dialog open={open} onOpenChange={(val) => setOpen(val)}>
         <DialogContent className="sm:max-w-[495px]">
           <DialogHeader>

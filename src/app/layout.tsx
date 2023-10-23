@@ -1,9 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import ThemeProvider from "@/components/theme-provider";
 
-const font = JetBrains_Mono({ subsets: ["cyrillic"] });
+const font = Space_Grotesk({ subsets: ["latin"], variable: "--font" });
 
 export const metadata: Metadata = {
   title: "ChatGPT",
@@ -16,14 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" id="mode" className="dark">
+    <html lang="en" id="mode">
       <body
         className={`${font.className} dark:bg-neutral-950 bg-white dark:text-neutral-200`}
       >
-        <main>
-          <Toaster />
-          {children}
-        </main>
+        <ThemeProvider>
+          <>
+            <main>
+              <Toaster />
+              {children}
+            </main>
+          </>
+        </ThemeProvider>
       </body>
     </html>
   );

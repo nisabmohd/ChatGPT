@@ -109,7 +109,7 @@ export default function Chat() {
           ))}
           {loading && <Skeleton />}
         </div>
-        <div className="w-[50%] max-[900px]:w-[90%] flex flex-row gap-3 mx-auto mt-auto">
+        <div className="w-[40%] max-[900px]:w-[90%] flex flex-row gap-3 mx-auto mt-auto">
           <Input
             onKeyDown={(e) => {
               if (e.keyCode == 13 && message) {
