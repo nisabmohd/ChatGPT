@@ -1,37 +1,36 @@
-# ChatGPT clone using OpenAI API
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This clone is made with React and Node and uses OpenAI API.
+## Getting Started
 
-- get your api key from https://openai.com/api/
-
-## Prerequisites
-
-Make sure you have installed all of the following prerequisites on your development machine:
-
-- Git - [Download & Install Git](https://git-scm.com/downloads). OSX and Linux machines typically have this already installed.
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. If you encounter any problems, you can also use this [GitHub Gist](https://gist.github.com/isaacs/579814) to install Node.js.
-
-## Cloning The GitHub Repository
-
-The recommended way to get ChatGPT clone is to use git to directly clone the repository:
+First, run the development server:
 
 ```bash
-$ git clone https://github.com/nisabmohd/ChatGPT.git
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Running Your Application
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-open terminal/bash in this repo and enter below commands to start the application
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-$ npm run dev
-```
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-- Your application should run on port 3000 with the _development_ environment configuration, so in your browser just go to [http://localhost:3000](http://localhost:3000)
+## Learn More
 
-## Preview
+To learn more about Next.js, take a look at the following resources:
 
-<img src="./images/login.png" />
-<img src="./images/signup.png" />
-<img src="./images/chat.png" />
-<img src="./images/chat-light.png" />
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
