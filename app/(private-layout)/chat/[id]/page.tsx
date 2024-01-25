@@ -16,6 +16,6 @@ export default async function ChatSpecificPage({ params: { id } }: PageParams) {
     },
   });
   if (!res) return notFound();
-  const allMessages = res.messages as JSONMessage[];
+  const allMessages = JSON.parse(JSON.stringify(res.messages.toString())) as JSONMessage[];
   return <Chat id={id} messages={allMessages} />;
 }
