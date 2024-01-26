@@ -23,7 +23,7 @@ export default function LeftPanel() {
       </SheetTrigger>
       <SheetContent side="left" className="min-w-[390px] px-0">
         <div>
-          <h3 className="px-10 text-xl font-semibold">Conversations</h3>
+          <h3 className="px-7 text-xl font-semibold">Conversations</h3>
           <Suspense
             fallback={
               <p className={buttonVariants({ variant: "link" })}>Loading...</p>
@@ -57,7 +57,10 @@ async function ConversationList() {
     <ScrollArea className="flex flex-col mt-7 items-start overflow-y-auto h-[90vh] pb-5">
       {conversations.map((cn) => (
         <SheetClose asChild key={cn.id}>
-          <Link href={`/chat/${cn.id}`} className="w-full my-2 px-10">
+          <Link
+            href={`/chat/${cn.id}`}
+            className="w-full my-3 px-8 hover:underline underline-offset-2"
+          >
             {cn.name.length > 35 ? cn.name.slice(0, 35) + "..." : cn.name}
           </Link>
         </SheetClose>

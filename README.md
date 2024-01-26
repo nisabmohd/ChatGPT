@@ -35,5 +35,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Tech
+
+- NextJS 14, RSC, Server actions, useFormStatus,useOptimistic
+- Shadcn-ui
+- Prisma
+- NextAuth
+- OpenAI
+
+## Preview
+
+<img src="./images/dark-hero.png" alt="" width="100%"/>
+<img src="./images/dark-greet.png" alt="" width="100%"/>
 <img src="./images/dark-chat.png" alt="" width="100%"/>
 <img src="./images/light-chat.png" alt="" width="100%"/>
