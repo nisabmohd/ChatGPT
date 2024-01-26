@@ -89,10 +89,24 @@ export async function chat(params: Message) {
   revalidatePath(`/chat/${params.conversationId}`);
 }
 
+declare global {
+  var ai_map: undefined | Map<string, OpenAI>;
+}
+
+const map = globalThis.ai_map ?? new Map<string, OpenAI>();
+
 async function createCompletion(apiKey: string, message: string) {
-  const ai = new OpenAI({
-    apiKey,
-  });
+  console.time();
+  let ai: OpenAI;
+  if (map.has(apiKey)) {
+    ai = map.get(apiKey)!;
+  } else {
+    ai = new OpenAI({
+      apiKey,
+    });
+    map.set(apiKey, ai);
+  }
+  console.timeEnd();
   const chatCompletion = await ai.chat.completions.create({
     messages: [{ role: "user", content: message }],
     model: "gpt-3.5-turbo",
