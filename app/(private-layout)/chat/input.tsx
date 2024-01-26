@@ -35,7 +35,7 @@ export default function ChatInput() {
   return (
     <form
       action={handleSubmit}
-      className="flex flex-row items-center gap-2 pr-5"
+      className="flex flex-row items-center gap-2 sm:pr-5"
     >
       <Input
         autoComplete="off"

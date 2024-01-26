@@ -42,7 +42,7 @@ export default function Chat({ messages, id }: ChatProps) {
             </h4>
             {!message.answer ? (
               <div className="w-96 flex flex-col gap-3">
-                <Skeleton className="w-[100%] h-[20px] rounded-md" />
+                <Skeleton className="w-[90%] h-[20px] rounded-md" />
                 <Skeleton className="w-[60%] h-[20px] rounded-md" />
               </div>
             ) : (
@@ -102,7 +102,7 @@ function ChatInput({ addMessage, id }: ConversationComponent) {
   return (
     <form
       action={handleSubmit}
-      className="flex flex-row items-center gap-2 pr-5"
+      className="flex flex-row items-center gap-2 sm:pr-5"
     >
       <Input
         ref={inputRef}

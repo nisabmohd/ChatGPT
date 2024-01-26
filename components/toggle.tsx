@@ -16,7 +16,7 @@ export default function ToggleTheme() {
   if (!mounted) return null;
 
   return (
-    <div>
+    <>
       {theme == "light" ? (
         <Button variant="ghost" size="icon" onClick={() => setTheme("dark")}>
           <MoonIcon className="w-5 h-5" />
@@ -26,6 +26,6 @@ export default function ToggleTheme() {
           <SunIcon className="w-5 h-5" />
         </Button>
       )}
-    </div>
+    </>
   );
 }

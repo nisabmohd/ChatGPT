@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import UserApi from "./user-api";
+import { UserIcon } from "lucide-react";
 
 export default async function Profile() {
   const session = await getUser();
@@ -18,7 +19,10 @@ export default async function Profile() {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="link">My account</Button>
+          <Button variant="link" size="sm">
+            <UserIcon className="w-5 h-5 sm:hidden flex" />
+            <span className="sm:flex hidden">My account</span>
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
