@@ -1,11 +1,12 @@
 "use client";
 
-import { JSONMessage, chat } from "@/actions/chat";
+import { chat } from "@/actions/chat";
 import Submit from "@/components/submit";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";
 import { generateRandomId } from "@/lib/utils";
+import { JSONMessage } from "@/types";
 import { useRouter } from "next/navigation";
 import { ElementRef, useEffect, useOptimistic, useRef } from "react";
 

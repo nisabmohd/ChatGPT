@@ -1,7 +1,7 @@
-import { JSONMessage } from "@/actions/chat";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import Chat from "./chat";
+import { JsonMessagesArraySchema } from "@/types";
 
 type PageParams = {
   params: {
@@ -16,6 +16,6 @@ export default async function ChatSpecificPage({ params: { id } }: PageParams) {
     },
   });
   if (!res) return notFound();
-  const allMessages = JSON.parse(JSON.stringify(res.messages)!) as JSONMessage[];
-  return <Chat id={id} messages={allMessages} />;
+  const parseResult = JsonMessagesArraySchema.parse(res.messages);
+  return <Chat id={id} messages={parseResult} />;
 }

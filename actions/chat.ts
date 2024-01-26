@@ -3,6 +3,7 @@
 import { getUser } from "@/lib/auth";
 import { generateRandomId } from "@/lib/utils";
 import prisma from "@/prisma/client";
+import { JsonMessagesArraySchema } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import OpenAI from "openai";
@@ -14,12 +15,6 @@ export type Message = {
 };
 
 export type NewMessage = Omit<Message, "conversationId">;
-
-export type JSONMessage = {
-  id: string;
-  question: string;
-  answer: string | undefined;
-};
 
 export async function newChat(params: NewMessage) {
   const session = await getUser();
@@ -70,7 +65,7 @@ export async function chat(params: Message) {
       },
     });
     const updatedMessageJson = [
-      ...JSON.parse(JSON.stringify(dataRef?.messages)!),
+      ...JsonMessagesArraySchema.parse(dataRef?.messages),
       {
         id: newConversationId,
         question: params.message,
