@@ -40,7 +40,7 @@ export default function LeftPanel() {
 async function ConversationList() {
   const session = await getUser();
   if (!session?.user) return null;
-  const { conversations } = (await prisma.user.findUnique({
+  const res = await prisma.user.findUnique({
     where: {
       id: session.user.id,
     },
@@ -51,8 +51,10 @@ async function ConversationList() {
         },
       },
     },
-  }))!;
+  });
 
+  if(!res) return null;
+  const { conversations } = res;
   return (
     <ScrollArea className="flex flex-col mt-7 items-start overflow-y-auto h-[90vh] pb-5">
       {conversations.map((cn) => (
