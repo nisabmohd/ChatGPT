@@ -5,7 +5,14 @@ import { signOut } from "next-auth/react";
 
 export default function SignOutButton() {
   return (
-    <Button className="w-24" variant="destructive" onClick={() => signOut()}>
+    <Button
+      className="w-24"
+      variant="destructive"
+      onClick={() => {
+        signOut();
+        localStorage.removeItem("apiKey");
+      }}
+    >
       Signout
     </Button>
   );

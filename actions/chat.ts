@@ -96,7 +96,6 @@ declare global {
 const map = globalThis.ai_map ?? new Map<string, OpenAI>();
 
 async function createCompletion(apiKey: string, message: string) {
-  console.time();
   let ai: OpenAI;
   if (map.has(apiKey)) {
     ai = map.get(apiKey)!;
@@ -106,7 +105,6 @@ async function createCompletion(apiKey: string, message: string) {
     });
     map.set(apiKey, ai);
   }
-  console.timeEnd();
   const chatCompletion = await ai.chat.completions.create({
     messages: [{ role: "user", content: message }],
     model: "gpt-3.5-turbo",
